@@ -31,6 +31,7 @@ const alphabet = {
   ю: "yu",
   я: "ya",
   ы: "",
+  ь: "",
 };
 const emailDomain = ["@yandex.ru", "@mail.ru"];
 let result = "";
