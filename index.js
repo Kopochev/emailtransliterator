@@ -33,15 +33,44 @@ const alphabet = {
   ы: "",
   ь: "",
 };
-const emailDomain = ["@yandex.ru", "@mail.ru"];
+const emailDomain = ["@yandex.ru", "@mail.ru", "@gmail.com"];
+//insert number + 1 for pseudo random range (for example if int = 2 then random range = 0 or 1)
+function randomInt(int) {
+  return Math.floor(Math.random() * int);
+}
+function randomizeEmail() {
+  let additionStr = "";
+  let zeroOrOne = randomInt(2);
+
+  if (zeroOrOne === 0) {
+    additionStr += randomInt(999);
+  } else {
+    if (randomInt(2) === 0) {
+      additionStr += "-";
+    } else {
+      additionStr += "_";
+    }
+  }
+  return additionStr;
+}
+randomizeEmail();
 let result = "";
 function translate(str) {
   str = str.toLowerCase().split(" ");
-  console.log(str);
+
   for (let i = 0; i < str[0].length; i++) {
     result += alphabet[str[0][i]];
   }
-  result += emailDomain[Math.floor(Math.random() * 2)];
+  let variantStr = randomizeEmail();
+  if (variantStr === "-" || variantStr === "_") {
+    if (str.length > 1) {
+      for (let j = 0; j <= randomInt(3) + 2; j++) {
+        variantStr += alphabet[str[1][j]];
+      }
+    }
+  }
+  result += variantStr;
+  result += emailDomain[randomInt(3)];
 }
 
 const inputText = document.querySelector(".nameInput");
@@ -68,5 +97,4 @@ async function paste() {
 }
 btnPaste.addEventListener("click", () => {
   paste();
-  //setTimeout(rewriteText, 300);
 });
