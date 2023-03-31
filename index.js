@@ -65,7 +65,11 @@ function translate(str) {
   if (variantStr === "-" || variantStr === "_") {
     if (str.length > 1) {
       for (let j = 0; j <= randomInt(3) + 2; j++) {
-        variantStr += alphabet[str[1][j]];
+        if (str[1][j] === undefined) {
+          variantStr += "";
+        } else {
+          variantStr += alphabet[str[1][j]];
+        }
       }
     }
   }
