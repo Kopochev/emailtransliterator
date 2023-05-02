@@ -48,7 +48,7 @@ function randomizeEmail() {
     if (randomInt(2) === 0) {
       additionStr += "-";
     } else {
-      additionStr += "_";
+      additionStr += ".";
     }
   }
   return additionStr;
@@ -62,7 +62,7 @@ function translate(str) {
     result += alphabet[str[0][i]];
   }
   let variantStr = randomizeEmail();
-  if (variantStr === "-" || variantStr === "_") {
+  if (variantStr === "-" || variantStr === ".") {
     if (str.length > 1) {
       for (let j = 0; j <= randomInt(3) + 2; j++) {
         if (str[1][j] === undefined) {
